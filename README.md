@@ -1,5 +1,5 @@
 # ZZbigz
-Unofficial anonymous torrent cloud client extension for Zbigz.com - Online torrent downloader.
+Unofficial anonymous torrent cloud client extension for [Zbigz.com - Online torrent downloader](https://api.zbigz.com/?ref=zhvjmkbx).
 
 #### Supports
  * Pale Moon [25.0a1pre - 28.*]
