@@ -1,0 +1,4 @@
+content zzbigz	 							chrome/content/
+skin 	zzbigz	 					skin 		chrome/skin/
+locale	zzbigz						en-US		chrome/locale/en-US/
+overlay chrome://browser/content/browser.xul 				chrome://zzbigz/content/overlay.xul
