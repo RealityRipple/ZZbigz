@@ -15,6 +15,7 @@
   </em:targetApplication>
   <em:description>Unofficial anonymous torrent cloud client extension for Zbigz.com - Online torrent downloader.</em:description>
   <em:homepageURL>https://realityripple.com/Software/Mozilla-Extensions/ZZbigz/</em:homepageURL>
+  <em:updateURL>https://realityripple.com/Software/Mozilla-Extensions/ZZbigz/update.rdf</em:updateURL>
   <em:iconURL>chrome://zzbigz/skin/logo.png</em:iconURL>
   <em:iconURL64>chrome://zzbigz/skin/logo64.png</em:iconURL64>
   <em:creator>RealityRipple</em:creator>
