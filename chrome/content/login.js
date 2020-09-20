@@ -1,5 +1,5 @@
 var zzbigz_login = {
- _timer: Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer),
+ _timer: Components.classes['@mozilla.org/timer;1'].createInstance(Components.interfaces.nsITimer),
  init: function()
  {
   zzbigz_login._timer.init(zzbigz_login.tickEvent, 1000, Components.interfaces.nsITimer.TYPE_ONE_SHOT);

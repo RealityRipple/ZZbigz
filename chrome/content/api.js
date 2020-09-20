@@ -81,19 +81,19 @@ var zzbigz_api = {
                  '--' + sBound + '--\n';
   let iLen = sMsgHead.length + data.length + sMsgFoot.length;
   let bMsg = new ArrayBuffer(iLen);
-  var sMsg = new Uint8Array(bMsg);
+  let sMsg = new Uint8Array(bMsg);
   let n = 0;
-  for (var i = 0; i < sMsgHead.length; i++)
+  for (let i = 0; i < sMsgHead.length; i++)
   {
    sMsg[n] = sMsgHead.charCodeAt(i) & 0xff;
    n++;
   }
-  for (var i = 0; i < data.length; i++)
+  for (let i = 0; i < data.length; i++)
   {
    sMsg[n] = data.charCodeAt(i) & 0xff;
    n++;
   }
-  for (var i = 0; i < sMsgFoot.length; i++)
+  for (let i = 0; i < sMsgFoot.length; i++)
   {
    sMsg[n] = sMsgFoot.charCodeAt(i) & 0xff;
    n++;

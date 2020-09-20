@@ -12,6 +12,6 @@
  <keyset>
   <key id="close_cmd" keycode="VK_ESCAPE" oncommand="window.close();" />
  </keyset>
- <script type="application/x-javascript" src="chrome://zzbigz/content/login.js" />
+ <script src="chrome://zzbigz/content/login.js" />
  <iframe id="fraLogin" src="https://zbigz.com/login" type="content-primary" flex="1"></iframe>
 </window>

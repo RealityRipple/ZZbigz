@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <overlay id="ZZbigzOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
- <script type="application/x-javascript" src="chrome://zzbigz/content/api.js" />
- <script type="application/x-javascript" src="chrome://zzbigz/content/grabber.js" />
+ <script src="chrome://zzbigz/content/api.js" />
+ <script src="chrome://zzbigz/content/grabber.js" />
 </overlay>

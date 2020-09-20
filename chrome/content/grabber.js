@@ -6,11 +6,11 @@ var zzbigz_grabber = {
   let observerService = Components.classes['@mozilla.org/observer-service;1'].getService(Components.interfaces.nsIObserverService);
   observerService.addObserver(zzbigz_grabber.ResponseObserver, 'http-on-examine-response', false);
   zzbigz_network.session = null;
-  var cookieManager = Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager2);
-  let eCookies = cookieManager.getCookiesFromHost('zbigz.com');
+  let cookieManager = Components.classes['@mozilla.org/cookiemanager;1'].getService(Components.interfaces.nsICookieManager2);
+  let eCookies = cookieManager.getCookiesFromHost('zbigz.com', {});
   while (eCookies.hasMoreElements())
   {
-   var cookie = eCookies.getNext().QueryInterface(Components.interfaces.nsICookie2); 
+   let cookie = eCookies.getNext().QueryInterface(Components.interfaces.nsICookie2); 
    if(cookie.name !== 'session')
     continue;
    zzbigz_network.session = cookie.value;
@@ -148,5 +148,5 @@ zzbigz_grabber.TracingListener.prototype = {
    return this;
   throw Components.results.NS_NOINTERFACE;
  }
-}
+};
 window.addEventListener('load', zzbigz_grabber.LoadListener, false);
