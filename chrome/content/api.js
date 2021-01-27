@@ -55,7 +55,7 @@ var zzbigz_api = {
  zReadAccount: async function()
  {
   let sURL = 'https://api.zbigz.com/v1/account/info';
-  let jRet = await zzbigz_network.postMsgTo(sURL, '', 'text/plain');
+  let jRet = await zzbigz_network.postMsgTo(sURL, 'undefined=undefined', 'text/plain');
   return jRet;
  },
  zAddMagnet: async function(url)
