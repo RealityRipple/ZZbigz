@@ -68,6 +68,7 @@ var zzbigz_api = {
    svcPrompt.alert(null, 'Error Adding Torrent', 'Unable to add your torrent:\n' + jRet.message);
    return false;
   }
+  await zzbigz_api.zCheckList();
   return true;
  },
  zAddTorrent: async function(filename, data)
@@ -106,7 +107,31 @@ var zzbigz_api = {
    svcPrompt.alert(null, 'Error Adding Torrent', 'Unable to add your torrent:\n' + jRet.message);
    return false;
   }
+  await zzbigz_api.zCheckList();
   return true;
+ },
+ zCheckList: async function()
+ {
+  let sURL = 'https://api.zbigz.com/v1/storage/list';
+  let jRet = await zzbigz_network.getMsgTo(sURL);
+  if(jRet.error !== 0 && jRet.error !== false)
+  {
+   console.log('Torrent List Error:', jRet);
+   return;
+  }
+  let i = 0;
+  while (jRet.hasOwnProperty(i))
+  {
+   console.log(jRet[i].hash);
+   await zzbigz_api.zCheckHash(jRet[i].hash, jRet[i].server);
+   i++;
+  }
+ },
+ zCheckHash: async function(hash, server)
+ {
+  let sURL = 'https://' + server + '/gate/status?hash=' + hash;
+  let jRet = await zzbigz_network.getMsgTo(sURL);
+  console.log(jRet);
  }
 };
 
