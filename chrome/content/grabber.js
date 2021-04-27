@@ -26,34 +26,7 @@ var zzbigz_grabber = {
     return this;
    throw Components.results.NS_NOINTERFACE;
   },
-  onLocationChange: async function(aBrowser, aProgress, aRequest, aURI, aFlags)
-  {
-   if(aURI === null)
-    return;
-   if (aURI.spec.substr(0, 20) !== 'magnet:?xt=urn:btih:')
-    return;
-   let sURI = aURI.spec;
-   if((aFlags & Components.interfaces.nsIWebProgressListener.LOCATION_CHANGE_ERROR_PAGE) === 0)
-   {
-    //console.log('Magnet URL, but handled by something?');
-    //console.log(aProgress, aRequest, aURI, aFlags);
-    return;
-   }
-   //if(aRequest !== null)
-   // console.log('Request Info Available: ', aRequest);
-   aBrowser.stop();
-   let navBack = false;
-   if(aBrowser.canGoBack)
-   {
-    navBack = true;
-    aBrowser.goBack();
-   }
-   else
-    aBrowser.loadURI('about:blank');
-   let added = await zzbigz_api.loadMagnet(sURI);
-   if(added && !navBack)
-    aBrowser.loadURI('https://zbigz.com/');
-  },
+  onLocationChange: async function(aBrowser, aProgress, aRequest, aURI, aFlags) {},
   onStateChange: function() {},
   onProgressChange: function() {},
   onStatusChange: function() {},
