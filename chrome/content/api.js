@@ -122,7 +122,6 @@ var zzbigz_api = {
   let i = 0;
   while (jRet.hasOwnProperty(i))
   {
-   console.log(jRet[i].hash);
    await zzbigz_api.zCheckHash(jRet[i].hash, jRet[i].server);
    i++;
   }
@@ -131,7 +130,7 @@ var zzbigz_api = {
  {
   let sURL = 'https://' + server + '/gate/status?hash=' + hash;
   let jRet = await zzbigz_network.getMsgTo(sURL);
-  console.log(jRet);
+  //console.log(jRet);
  }
 };
 
