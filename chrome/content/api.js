@@ -1,4 +1,48 @@
 var zzbigz_api = {
+ loadURL: function()
+ {
+  let prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
+  let prefName = 'extensions.zzbigz.auto-open';
+  if (prefs.prefHasUserValue(prefName))
+  {
+   if (prefs.getBoolPref(prefName) === false)
+    return false;
+  }
+  else
+   return false;
+  let url = 'https://zbigz.com/';
+  let mdtr = Components.classes['@mozilla.org/appshell/window-mediator;1'].getService(Components.interfaces.nsIWindowMediator);
+  let brw = mdtr.getEnumerator('navigator:browser');
+  while (brw.hasMoreElements())
+  {
+   let wnd = brw.getNext();
+   let gw = wnd.gBrowser;
+   for (let i = 0; i < gw.browsers.length; i++)
+   {
+    let bri = gw.getBrowserAtIndex(i);
+    if (bri.currentURI.spec.substring(0, url.length) === url)
+    {
+     let tbi = gw.tabContainer.childNodes[i];
+     if (bri.currentURI.spec !== url + 'myfiles')
+      bri.loadURI(url + 'myfiles', null, null);
+     else
+      gw.reloadTab(tbi);
+     gw.selectedTab = tbi;
+     wnd.focus();
+     return 1;
+    }
+   }
+  }
+  let rwnd = mdtr.getMostRecentWindow('navigator:browser');
+  if (rwnd)
+  {
+   let nw = rwnd.gBrowser.addTab(url, null, null, null, null, null);
+   rwnd.gBrowser.selectedTab = nw;
+   return 2;
+  }
+  window.open(url);
+  return 3;
+ },
  loadMagnet: async function(sURL)
  {
   let loggedIn = await zzbigz_api.zCheckLogin();

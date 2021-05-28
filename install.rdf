@@ -26,6 +26,8 @@
   <em:updateURL>https://realityripple.com/Software/Mozilla-Extensions/ZZbigz/update.rdf</em:updateURL>
   <em:iconURL>chrome://zzbigz/skin/logo.png</em:iconURL>
   <em:iconURL64>chrome://zzbigz/skin/logo64.png</em:iconURL64>
+  <em:optionsURL>chrome://zzbigz/content/prefs.xul</em:optionsURL>
+  <em:optionsType>2</em:optionsType>
   <em:creator>RealityRipple</em:creator>
  </Description>
 </RDF>

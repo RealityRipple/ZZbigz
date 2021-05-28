@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<!DOCTYPE prefs SYSTEM "chrome://zzbigz/locale/prefs.dtd">
+<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+ <setting type="bool" pref="extensions.zzbigz.auto-open" title="&zzbigz.autoopen.title;" desc="&zzbigz.autoopen.desc;" />
+</vbox>

@@ -103,7 +103,7 @@ zzbigz_grabber.TracingListener.prototype = {
  onStartRequest: function(request, context)
  {
  },
- onStopRequest: function(request, context, statusCode)
+ onStopRequest: async function(request, context, statusCode)
  {
   let sName = null;
   try
@@ -113,7 +113,9 @@ zzbigz_grabber.TracingListener.prototype = {
   }
   catch(ex) {}
   let responseSource = this.receivedData.join('');
-  zzbigz_api.loadTorrent(sName, responseSource);
+  let added = await zzbigz_api.loadTorrent(sName, responseSource);
+  if (added)
+   zzbigz_api.loadURL();
  },
  QueryInterface: function (aIID)
  {
