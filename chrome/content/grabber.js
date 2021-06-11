@@ -115,7 +115,7 @@ zzbigz_grabber.TracingListener.prototype = {
   let responseSource = this.receivedData.join('');
   let added = await zzbigz_api.loadTorrent(sName, responseSource);
   if (added)
-   zzbigz_api.loadURL();
+   await zzbigz_api.loadURL();
  },
  QueryInterface: function (aIID)
  {

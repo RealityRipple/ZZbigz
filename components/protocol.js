@@ -44,7 +44,7 @@ MagnetProtocol.prototype = {
   let brw = this._getBrowser();
   let added = await brw.zzbigz_api.loadMagnet(input_uri.spec);
   if (added)
-   brw.zzbigz_api.loadURL();
+   await brw.zzbigz_api.loadURL();
   let ios = Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService);
   return ios.newChannel2('javascript:null', null, null, null, null, null, null, null);
  }

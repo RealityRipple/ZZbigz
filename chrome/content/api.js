@@ -1,15 +1,21 @@
 var zzbigz_api = {
- loadURL: function()
+ loadURL: async function()
  {
   let prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
   let prefName = 'extensions.zzbigz.auto-open';
   if (prefs.prefHasUserValue(prefName))
   {
    if (prefs.getBoolPref(prefName) === false)
+   {
+    await zzbigz_api.zCheckList();
     return false;
+   }
   }
   else
+  {
+   await zzbigz_api.zCheckList();
    return false;
+  }
   let url = 'https://zbigz.com/';
   let mdtr = Components.classes['@mozilla.org/appshell/window-mediator;1'].getService(Components.interfaces.nsIWindowMediator);
   let brw = mdtr.getEnumerator('navigator:browser');
@@ -112,7 +118,6 @@ var zzbigz_api = {
    svcPrompt.alert(null, 'Error Adding Torrent', 'Unable to add your torrent:\n' + jRet.message);
    return false;
   }
-  await zzbigz_api.zCheckList();
   return true;
  },
  zAddTorrent: async function(filename, data)
@@ -151,7 +156,6 @@ var zzbigz_api = {
    svcPrompt.alert(null, 'Error Adding Torrent', 'Unable to add your torrent:\n' + jRet.message);
    return false;
   }
-  await zzbigz_api.zCheckList();
   return true;
  },
  zCheckList: async function()
