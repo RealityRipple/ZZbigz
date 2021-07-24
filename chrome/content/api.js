@@ -89,10 +89,6 @@ var zzbigz_api = {
  },
  zCheckLogin: async function()
  {
-  /*
-  let sURL = 'https://api.zbigz.com/v1/stock/active';
-  let jRet = await zzbigz_network.getMsgTo(sURL);
-  */
   let jAccount = await zzbigz_api.zReadAccount();
   if(jAccount.hasOwnProperty('email'))
    return true;
@@ -178,7 +174,6 @@ var zzbigz_api = {
  {
   let sURL = 'https://' + server + '/gate/status?hash=' + hash;
   let jRet = await zzbigz_network.getMsgTo(sURL);
-  //console.log(jRet);
  }
 };
 

@@ -57,18 +57,6 @@ var zzbigz_grabber = {
      }
     }
     catch(ex) {}
-    /*
-    if(aSubject.hasOwnProperty('name'))
-    {
-     if(aSubject.name.substr(aSubject.name.length - 8).toLowerCase() === '.torrent')
-     {
-      let newListener = new zzbigz_grabber.TracingListener();
-      aSubject.QueryInterface(Components.interfaces.nsITraceableChannel);
-      newListener.originalListener = aSubject.setNewListener(newListener);
-      return;
-     }
-    }
-    */
    }
   },
   QueryInterface : function (aIID)
