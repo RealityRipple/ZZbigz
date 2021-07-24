@@ -53,7 +53,7 @@ var zzbigz_api = {
  {
   let loggedIn = await zzbigz_api.zCheckLogin();
   if(!loggedIn)
-   await zzbigz_api.zSendLogin();
+   zzbigz_api.zSendLogin();
   loggedIn = await zzbigz_api.zCheckLogin();
   if(!loggedIn)
    return false;
@@ -69,7 +69,7 @@ var zzbigz_api = {
  {
   let loggedIn = await zzbigz_api.zCheckLogin();
   if(!loggedIn)
-   await zzbigz_api.zSendLogin();
+   zzbigz_api.zSendLogin();
   loggedIn = await zzbigz_api.zCheckLogin();
   if(!loggedIn)
    return false;
@@ -98,7 +98,7 @@ var zzbigz_api = {
    return true;
   return false;
  },
- zSendLogin: async function()
+ zSendLogin: function()
  {
   window.openDialog('chrome://zzbigz/content/login.xul', 'zzbigz_login', 'chrome,dialog,resizable=no,width=350,height=540,alwaysRaised,modal');
  },
@@ -203,7 +203,7 @@ var zzbigz_network = {
   sSession = sSession.substring(0, sSession.indexOf(';'));
   zzbigz_network.session = sSession;
  },
- sendPostTo: async function(addr, params, enc)
+ sendPostTo: function(addr, params, enc)
  {
   let timeout = 10000;
   let loadTime = 300000;
@@ -268,7 +268,7 @@ var zzbigz_network = {
    xmlhttp.send(params);
   });
  },
- postMsgTo: async function(addr, params, enc)
+ postMsgTo: function(addr, params, enc)
  {
   return new Promise((resolve, reject) => {
    let attempts = 3;
@@ -295,7 +295,7 @@ var zzbigz_network = {
    XHR();
   });
  },
- sendGetTo: async function(addr)
+ sendGetTo: function(addr)
  {
   let timeout = 10000;
   let loadTime = 300000;
@@ -359,7 +359,7 @@ var zzbigz_network = {
    xmlhttp.send();
   });
  },
- getMsgTo: async function(addr)
+ getMsgTo: function(addr)
  {
   return new Promise((resolve, reject) => {
    let attempts = 3;

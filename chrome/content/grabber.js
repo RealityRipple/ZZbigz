@@ -26,12 +26,8 @@ var zzbigz_grabber = {
     return this;
    throw Components.results.NS_NOINTERFACE;
   },
-  onLocationChange: async function(aBrowser, aProgress, aRequest, aURI, aFlags) {},
   onStateChange: function() {},
-  onProgressChange: function() {},
-  onStatusChange: function() {},
-  onSecurityChange: function() {},
-  onLinkIconAvailable: function() {}
+  onStatusChange: function() {}
  },
  ResponseObserver:
  {
