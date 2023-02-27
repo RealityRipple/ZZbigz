@@ -5,6 +5,8 @@ var zzbigz_grabber = {
   gBrowser.addTabsProgressListener(zzbigz_grabber.ProgressListener, Components.interfaces.nsIWebProgress.NOTIFY_PROGRESS);
   let observerService = Components.classes['@mozilla.org/observer-service;1'].getService(Components.interfaces.nsIObserverService);
   observerService.addObserver(zzbigz_grabber.ResponseObserver, 'http-on-examine-response', false);
+  observerService.addObserver(zzbigz_grabber.ResponseObserver, 'http-on-examine-cached-response', false);
+  observerService.addObserver(zzbigz_grabber.ResponseObserver, 'http-on-examine-merged-response', false);
   zzbigz_network.session = null;
   let cookieManager = Components.classes['@mozilla.org/cookiemanager;1'].getService(Components.interfaces.nsICookieManager2);
   let eCookies = cookieManager.getCookiesFromHost('zbigz.com', {});
@@ -83,8 +85,6 @@ var zzbigz_grabber = {
  {
   observe: function(aSubject, aTopic, aData)
   {
-   if(aTopic !== 'http-on-examine-response')
-    return;
    if(zzbigz_grabber.parseByType(aSubject))
     return;
    if(zzbigz_grabber.parseByName(aSubject))
