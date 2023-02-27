@@ -16,6 +16,56 @@ var zzbigz_grabber = {
    zzbigz_network.session = cookie.value;
   }
  },
+ parseByType: function(aSubject)
+ {
+  if(!aSubject.hasOwnProperty('contentType'))
+   return false;
+  let t = null;
+  try
+  {
+   t = aSubject.contentType;
+  }
+  catch (ex)
+  {
+   return false;
+  }
+  if(typeof t === 'undefined')
+   return false;
+  if(t === null)
+   return false;
+  if(t.toLowerCase() !== 'application/x-bittorrent')
+   return false;
+  let newListener = new zzbigz_grabber.TracingListener();
+  aSubject.QueryInterface(Components.interfaces.nsITraceableChannel);
+  newListener.originalListener = aSubject.setNewListener(newListener);
+  return true;
+ },
+ parseByName: function(aSubject)
+ {
+  if(!aSubject.hasOwnProperty('contentDispositionFilename'))
+   return false;
+  let n = null;
+  try
+  {
+   n = aSubject.contentDispositionFilename;
+  }
+  catch (ex)
+  {
+   return false;
+  }
+  if(typeof n === 'undefined')
+   return false;
+  if(n === null)
+   return false;
+  if(n.length < 8)
+   return false;
+  if(n.slice(-8).toLowerCase() !== '.torrent')
+   return false;
+  let newListener = new zzbigz_grabber.TracingListener();
+  aSubject.QueryInterface(Components.interfaces.nsITraceableChannel);
+  newListener.originalListener = aSubject.setNewListener(newListener);
+  return true;
+ },
  ProgressListener:
  {
   QueryInterface: function(aIID)
@@ -33,31 +83,12 @@ var zzbigz_grabber = {
  {
   observe: function(aSubject, aTopic, aData)
   {
-   if(aTopic === 'http-on-examine-response')
-   {
-    if(aSubject.contentType === 'application/x-bittorrent')
-    {
-     let newListener = new zzbigz_grabber.TracingListener();
-     aSubject.QueryInterface(Components.interfaces.nsITraceableChannel);
-     newListener.originalListener = aSubject.setNewListener(newListener);
-     return;
-    }
-    try
-    {
-     if(aSubject.contentDispositionFilename !== null)
-     {
-      let sFile = aSubject.contentDispositionFilename;
-      if(typeof sFile !== 'undefined' && sFile.substr(sFile.length - 8).toLowerCase() === '.torrent')
-      {
-       let newListener = new zzbigz_grabber.TracingListener();
-       aSubject.QueryInterface(Components.interfaces.nsITraceableChannel);
-       newListener.originalListener = aSubject.setNewListener(newListener);
-       return;
-      }
-     }
-    }
-    catch(ex) {}
-   }
+   if(aTopic !== 'http-on-examine-response')
+    return;
+   if(zzbigz_grabber.parseByType(aSubject))
+    return;
+   if(zzbigz_grabber.parseByName(aSubject))
+    return;
   },
   QueryInterface : function (aIID)
   {
