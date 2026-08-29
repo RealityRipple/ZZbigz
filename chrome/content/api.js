@@ -1,19 +1,20 @@
 var zzbigz_api = {
  loadURL: async function()
  {
+  await zzbigz_api.zCheckList();
   let prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
   let prefName = 'extensions.zzbigz.auto-open';
   if (prefs.prefHasUserValue(prefName))
   {
    if (prefs.getBoolPref(prefName) === false)
    {
-    await zzbigz_api.zCheckList();
+    //await zzbigz_api.zCheckList();
     return false;
    }
   }
   else
   {
-   await zzbigz_api.zCheckList();
+   //await zzbigz_api.zCheckList();
    return false;
   }
   let url = 'https://zbigz.com/';
