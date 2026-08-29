@@ -1,4 +1,5 @@
 var zzbigz_api = {
+ subd: -1,
  loadURL: async function()
  {
   await zzbigz_api.zCheckList();
@@ -173,6 +174,22 @@ var zzbigz_api = {
  },
  zCheckHash: async function(hash, server)
  {
+  const aBad = ['sf4d4qs', 'n743qd', 'djf32mu', 'dft3r5', 'sf36ddq'];
+  const aGood = ['nbg83', 'lg14sm', 'sc64xf', 'd42swq'];
+  if (zzbigz_api.subd === -1)
+   zzbigz_api.subd = Math.floor(Math.random() * aGood.length);
+  for (let i = 0; i < aBad.length; i++)
+  {
+   if (server === aBad[i] + '.zbigz.com')
+   {
+    server = aGood[zzbigz_api.subd] + '.zbigz.com';
+    if (zzbigz_api.subd >= aGood.length)
+     zzbigz_api.subd = 0;
+    break;
+   }
+  }
+  if (server === aGood[zzbigz_api.subd] + '.zbigz.com')
+   zzbigz_api.subd++;
   let sURL = 'https://' + server + '/gate/status?hash=' + hash;
   let jRet = await zzbigz_network.getMsgTo(sURL);
  }
